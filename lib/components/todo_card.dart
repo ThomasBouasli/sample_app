@@ -24,7 +24,7 @@ class _TodoCardState extends State<TodoCard> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CheckboxListTile(
+      leading: Checkbox(
         onChanged: (value) {},
         value: todo.completed,
       ),
