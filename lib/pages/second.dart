@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sample_app/components/main_drawer.dart';
 import 'package:sample_app/components/todo_list.dart';
 import 'package:sample_app/data/todo.dart';
 
@@ -25,6 +26,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Second Page")),
+        drawer: const MainDrawer(),
         body: FutureBuilder(
           future: fetchTodo(),
           builder: (context, snapshot) {

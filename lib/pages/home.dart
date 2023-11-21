@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/components/main_drawer.dart';
 import 'package:sample_app/pages/second.dart';
 
 class Home extends StatelessWidget {
@@ -8,6 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Routing App")),
+      drawer: const MainDrawer(),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
