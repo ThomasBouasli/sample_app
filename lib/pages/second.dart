@@ -23,43 +23,33 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Second Page")),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Text(
-              'Second Page',
-            ),
-            Text(data),
-            FutureBuilder(
-              future: fetchTodo(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                }
+        appBar: AppBar(title: const Text("Second Page")),
+        body: FutureBuilder(
+          future: fetchTodo(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
 
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
+            if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(snapshot.data![index].title),
-                      trailing: snapshot.data![index].completed
-                          ? const Icon(Icons.check)
-                          : const Icon(Icons.close),
-                    );
-                  },
+            return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(snapshot.data![index].title),
+                  trailing: snapshot.data![index].completed
+                      ? const Icon(Icons.check)
+                      : const Icon(Icons.close),
                 );
               },
-            )
-          ],
-        ),
-      ),
-    );
+            );
+          },
+        ));
   }
 }
