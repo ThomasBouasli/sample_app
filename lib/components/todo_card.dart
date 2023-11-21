@@ -25,8 +25,15 @@ class _TodoCardState extends State<TodoCard> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Checkbox(
-        onChanged: (value) {},
-        value: todo.completed,
+        onChanged: (value) {
+          setState(() {
+            isSelected = value!;
+          });
+        },
+        value: isSelected,
+      ),
+      title: Text(
+        todo.title,
       ),
     );
   }
