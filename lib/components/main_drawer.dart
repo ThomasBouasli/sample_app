@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/pages/home.dart';
 import 'package:sample_app/pages/second.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -25,7 +26,10 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             title: const Text('First Page'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Home()),
+              );
             },
           ),
           ListTile(
