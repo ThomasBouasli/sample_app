@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sample_app/components/todo_list.dart';
 import 'package:sample_app/data/todo.dart';
 
 class SecondPage extends StatelessWidget {
@@ -35,20 +36,11 @@ class SecondPage extends StatelessWidget {
               return Text(snapshot.error.toString());
             }
 
-            return ListView.builder(
-              padding: const EdgeInsets.all(8),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: snapshot.data?.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].title),
-                  trailing: snapshot.data![index].completed
-                      ? const Icon(Icons.check)
-                      : const Icon(Icons.close),
-                );
-              },
-            );
+            if (!snapshot.hasData) {
+              return const Text("No data");
+            }
+
+            return TodoList(todos: snapshot.data as List<Todo>);
           },
         ));
   }
